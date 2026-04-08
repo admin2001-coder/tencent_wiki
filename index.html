@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tencent EdgeOne — Customer Use Cases</title>
+  <meta name="description" content="A Tencent-branded, single-page HTML wiki summarizing Tencent EdgeOne customer use cases: acceleration, security, bot management, and edge computing." />
+  <style>
+    :root{
+      --tencent-blue:#0052d9;
+      --tencent-blue-2:#2b73ff;
+      --ink:#0b1220;
+      --muted:#5b677a;
+      --card:#0f172a;
+      --card2:#101b34;
+      --border:rgba(255,255,255,.10);
+      --bg1:#050816;
+      --bg2:#0b1430;
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: rgba(255,255,255,.92);
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(43,115,255,.35), transparent 55%),
+        radial-gradient(900px 600px at 85% 25%, rgba(0,82,217,.28), transparent 55%),
+        radial-gradient(800px 600px at 55% 90%, rgba(34,197,94,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    a{color:#b9d2ff; text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* top nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(5,8,22,.70);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding: 12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:34px;height:34px;border-radius:10px;
+      background: linear-gradient(135deg, var(--tencent-blue), var(--tencent-blue-2));
+      box-shadow: 0 10px 25px rgba(0,82,217,.35);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:8px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.35);
+    }
+    .brand-title{
+      line-height:1.1;
+    }
+    .brand-title strong{display:block; font-size:14px; letter-spacing:.2px}
+    .brand-title span{display:block; font-size:12px; color:rgba(255,255,255,.70)}
+
+    .nav-links{
+      display:flex; flex-wrap:wrap;
+      gap:10px;
+      justify-content:flex-end;
+    }
+    .chip{
+      padding:8px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      font-size: 12px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .chip:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(185,210,255,.40)}
+
+    /* layout */
+    .wrap{max-width:1100px; margin:0 auto; padding: 28px 18px 70px;}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr;}
+      .brand{min-width:auto}
+    }
+
+    .panel{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+    }
+    .hero-main{padding: 26px 24px; position:relative; overflow:hidden;}
+    .hero-main:before{
+      content:"";
+      position:absolute;
+      top:-120px; left:-120px;
+      width:260px; height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(43,115,255,.55), transparent 60%);
+      filter: blur(2px);
+      opacity:.9;
+    }
+
+    h1{margin:0; font-size: 36px; letter-spacing:-.6px;}
+    .subtitle{margin-top:10px; color: rgba(255,255,255,.78); font-size: 15px; line-height:1.55}
+
+    .cta-row{margin-top: 16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,82,217,.18);
+      color: rgba(255,255,255,.92);
+      font-weight: 650;
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(0,82,217,.26); border-color: rgba(185,210,255,.45)}
+    .btn.secondary{background: rgba(255,255,255,.06)}
+
+    .hero-side{padding: 18px; display:flex; flex-direction:column; gap:12px}
+    .stat{
+      padding: 14px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(15,23,42,.55);
+    }
+    .stat .k{font-size:12px; color: rgba(255,255,255,.70)}
+    .stat .v{font-size:14px; margin-top:6px; font-weight:700}
+
+    /* sections */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 6;
+      padding: 18px 18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(15,23,42,.80), rgba(16,27,52,.65));
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute;
+      inset:-80px -120px auto auto;
+      width:260px;height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(43,115,255,.25), transparent 60%);
+      transform: rotate(18deg);
+    }
+    .card h2{margin:0; font-size: 16px; letter-spacing:-.2px}
+    .card p{margin: 10px 0 0; color: rgba(255,255,255,.76); line-height:1.6; font-size: 13.5px}
+    .bullets{margin: 12px 0 0; padding-left: 18px; color: rgba(255,255,255,.78)}
+    .bullets li{margin: 7px 0; font-size: 13.5px; line-height:1.45}
+
+    .tagrow{margin-top: 12px; display:flex; flex-wrap:wrap; gap:8px}
+    .tag{
+      font-size: 12px;
+      padding: 6px 8px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.82);
+    }
+
+    @media (max-width: 900px){
+      .card{grid-column: span 12;}
+      h1{font-size: 30px;}
+    }
+
+    /* citations */
+    .cite{
+      margin-top: 18px;
+      padding: 18px;
+    }
+    .cite h3{margin: 0; font-size: 14px; letter-spacing:.2px}
+    .cite ul{margin: 10px 0 0; padding-left: 18px; color: rgba(255,255,255,.78)}
+    .cite li{margin: 7px 0; font-size: 13px; line-height:1.5}
+
+    footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      padding: 14px 2px 0;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    .pill{
+      display:inline-block;
+      margin-left: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.72);
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brand-title">
+          <strong>Tencent EdgeOne</strong>
+          <span>Customer Use Cases — HTML Wiki</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a class="chip" href="#use-cases">Use cases</a>
+        <a class="chip" href="#architecture">Reference architecture</a>
+        <a class="chip" href="#sources">Sources</a>
+        <a class="chip" href="https://github.com/admin2001-coder/tencent_wiki" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel hero-main">
+        <h1>Edge security + acceleration for real-world traffic</h1>
+        <p class="subtitle">
+          This single-page wiki summarizes common <b>customer use cases</b> for <b>Tencent EdgeOne</b>—
+          combining global acceleration (CDN), web security (WAF/DDoS), and bot management.
+          It’s designed as a clean, shareable HTML page that can be deployed on <b>GitHub Pages</b>.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#use-cases">Explore use cases</a>
+          <a class="btn secondary" href="https://edgeone.ai/document/45963" target="_blank" rel="noreferrer">Official use-cases doc</a>
+          <a class="btn secondary" href="https://edgeone.ai/success-stories" target="_blank" rel="noreferrer">Success stories</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-side" aria-label="Quick facts">
+        <div class="stat">
+          <div class="k">Focus</div>
+          <div class="v">Performance, protection, and availability</div>
+        </div>
+        <div class="stat">
+          <div class="k">Common industries</div>
+          <div class="v">E-commerce, gaming, media, SaaS</div>
+        </div>
+        <div class="stat">
+          <div class="k">Typical outcomes</div>
+          <div class="v">Lower latency • fewer attacks • higher uptime</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="use-cases" class="grid" aria-label="Use cases">
+      <article class="card">
+        <h2>1) Global web & app acceleration (CDN + smart routing)</h2>
+        <p>
+          Improve time-to-first-byte and page load by serving content from edge nodes and optimizing routes.
+          Commonly used when expanding globally or serving mixed static + dynamic workloads.
+        </p>
+        <ul class="bullets">
+          <li>Multi-region websites and SaaS dashboards</li>
+          <li>Large file downloads and software distribution</li>
+          <li>Video / live streaming delivery at scale</li>
+          <li>Traffic surges (launches, campaigns)</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag">CDN</span><span class="tag">Smart acceleration</span><span class="tag">Global delivery</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>2) Web protection (WAF) for internet-facing apps</h2>
+        <p>
+          Shield applications from common OWASP-style attacks and abusive traffic patterns. This is often paired
+          with acceleration so security controls sit at the edge.
+        </p>
+        <ul class="bullets">
+          <li>Protect login, checkout, and search endpoints</li>
+          <li>Block exploits, injection, and malicious scanning</li>
+          <li>Enforce policies before traffic reaches origin</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag">WAF</span><span class="tag">Edge security</span><span class="tag">App shielding</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>3) DDoS mitigation to sustain availability</h2>
+        <p>
+          Maintain uptime during volumetric attacks and sudden bursts. Organizations often adopt DDoS protection
+          when availability is revenue-critical.
+        </p>
+        <ul class="bullets">
+          <li>E-commerce: keep checkout and payment stable</li>
+          <li>Gaming: protect game login/download services during launches</li>
+          <li>Media: absorb traffic floods during major events</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag">DDoS</span><span class="tag">Availability</span><span class="tag">Burst handling</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>4) Bot management for fraud & abuse reduction</h2>
+        <p>
+          Identify and mitigate automated traffic that impacts cost, inventory, fraud, scraping, and account
+          takeover risks.
+        </p>
+        <ul class="bullets">
+          <li>Stop credential stuffing and automated signups</li>
+          <li>Reduce scraping and inventory hoarding</li>
+          <li>Protect APIs from abnormal request patterns</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag">Bot management</span><span class="tag">Fraud controls</span><span class="tag">API protection</span>
+        </div>
+      </article>
+    </section>
+
+    <section id="architecture" class="panel cite" aria-label="Reference architecture">
+      <h3>Reference architecture (high level)</h3>
+      <ul>
+        <li><b>Users</b> → Edge nodes for <b>acceleration</b> (caching, routing) and <b>security inspection</b> (WAF/DDoS/bot).</li>
+        <li>Clean traffic proceeds to your <b>origin</b> (cloud load balancer, Kubernetes, VM, or serverless backend).</li>
+        <li>Observed metrics drive tuning: caching rules, security policies, rate limits, and bot challenges.</li>
+      </ul>
+      <p style="margin:10px 0 0; color: rgba(255,255,255,.72); font-size: 13px; line-height:1.6">
+        This page intentionally keeps architecture vendor-neutral while linking to official EdgeOne product pages and docs for details.
+      </p>
+    </section>
+
+    <section id="sources" class="panel cite" aria-label="Sources">
+      <h3>Sources (public)</h3>
+      <ul>
+        <li><a href="https://edgeone.ai/document/45963" target="_blank" rel="noreferrer">Tencent EdgeOne — Use Cases</a></li>
+        <li><a href="https://edgeone.ai/products/cdn" target="_blank" rel="noreferrer">Tencent EdgeOne — CDN</a></li>
+        <li><a href="https://edgeone.ai/products/web-protection" target="_blank" rel="noreferrer">Tencent EdgeOne — Web Protection</a></li>
+        <li><a href="https://edgeone.ai/products/ddos-protection" target="_blank" rel="noreferrer">Tencent EdgeOne — DDoS Protection</a></li>
+        <li><a href="https://edgeone.ai/products/bot-management" target="_blank" rel="noreferrer">Tencent EdgeOne — Bot Management</a></li>
+        <li><a href="https://edgeone.ai/success-stories" target="_blank" rel="noreferrer">Tencent EdgeOne — Success Stories</a></li>
+        <li><a href="https://edgeone.ai/blog/details/edgeone-helps-global-customers-deliver-performance-and-security" target="_blank" rel="noreferrer">EdgeOne blog — performance & security case study</a></li>
+        <li><a href="https://news.qq.com/rain/a/20230519A04H8Z00" target="_blank" rel="noreferrer">Tencent News — EdgeOne cost reduction & efficiency (CN)</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      Built as a static HTML wiki for GitHub Pages.
+      <span class="pill">Repo: admin2001-coder/tencent_wiki</span>
+    </footer>
+  </main>
+</body>
+</html>

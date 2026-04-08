@@ -1,11 +1,20 @@
 # tencent_wiki
 
-A small wiki-style site intended to be hosted on Tencent EdgeOne.
+A single-page **HTML wiki** for **Tencent EdgeOne customer use cases**, styled with a Tencent-inspired visual theme.
 
-## Contents
-- `site/index.html`: initial HTML wiki page
+## Live site (GitHub Pages)
+After Pages is enabled, it will be available at:
+- `https://admin2001-coder.github.io/tencent_wiki/`
 
-## Deploy to EdgeOne
-1. Create an EdgeOne **Static Site** / **Pages** project.
-2. Set build output directory to `site/` (or upload `site/index.html`).
-3. Deploy.
+## What’s inside
+- `index.html` — the wiki page (no build step)
+
+## Sources
+This page links to public EdgeOne pages/docs, including:
+- https://edgeone.ai/document/45963
+- https://edgeone.ai/success-stories
+- https://edgeone.ai/products/cdn
+- https://edgeone.ai/products/web-protection
+- https://edgeone.ai/products/ddos-protection
+- https://edgeone.ai/products/bot-management
+- https://news.qq.com/rain/a/20230519A04H8Z00
