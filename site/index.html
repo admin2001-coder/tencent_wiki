@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tencent Wiki</title>
+  <style>
+    :root { --fg:#111; --muted:#555; --bg:#fff; --link:#0b5fff; --code:#f6f8fa; --border:#e5e7eb; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--fg); background:var(--bg); }
+    header { padding: 28px 18px; border-bottom:1px solid var(--border); }
+    main { max-width: 920px; margin: 0 auto; padding: 22px 18px 56px; }
+    h1 { margin: 0 0 6px; font-size: 28px; }
+    p  { line-height: 1.55; }
+    .muted { color: var(--muted); }
+    nav { margin: 16px 0 0; display:flex; gap:10px; flex-wrap:wrap; }
+    nav a { text-decoration:none; color:var(--link); border:1px solid var(--border); padding:8px 10px; border-radius: 10px; }
+    section { margin-top: 22px; padding-top: 18px; border-top:1px solid var(--border); }
+    pre { background: var(--code); padding: 12px; border-radius: 10px; overflow:auto; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    footer { margin-top: 44px; padding-top: 14px; border-top:1px solid var(--border); font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <main>
+      <h1>Tencent Wiki</h1>
+      <p class="muted">Single-file HTML wiki page (starter) — designed for EdgeOne static hosting.</p>
+      <nav>
+        <a href="#getting-started">Getting started</a>
+        <a href="#deploy-edgeone">Deploy to EdgeOne</a>
+        <a href="#structure">Repo structure</a>
+      </nav>
+    </main>
+  </header>
+
+  <main>
+    <section id="getting-started">
+      <h2>Getting started</h2>
+      <p>Edit this file at <code>site/index.html</code> and redeploy.</p>
+    </section>
+
+    <section id="deploy-edgeone">
+      <h2>Deploy to Tencent EdgeOne</h2>
+      <p>Typical flow (confirm exact steps in EdgeOne console):</p>
+      <ol>
+        <li>Create a Static Site / Pages project in EdgeOne.</li>
+        <li>Connect this GitHub repo: <code>admin2001-coder/tencent_wiki</code>.</li>
+        <li>Set output directory to <code>site/</code> (no build step needed).</li>
+        <li>Deploy and bind a domain if desired.</li>
+      </ol>
+      <pre><code># If EdgeOne requires a build command, use a no-op:
+# Build command: echo "no build"
+# Output directory: site
+</code></pre>
+    </section>
+
+    <section id="structure">
+      <h2>Repo structure</h2>
+      <pre><code>tencent_wiki/
+  README.md
+  site/
+    index.html
+</code></pre>
+    </section>
+
+    <footer>
+      <div>Generated on 2026-04-08.</div>
+    </footer>
+  </main>
+</body>
+</html>
